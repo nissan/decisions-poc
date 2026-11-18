@@ -78,7 +78,9 @@ def main():
     parser.add_argument('--labels', type=Path, required=True)
     parser.add_argument('--label-digest', required=True)
     parser.add_argument('--baseline', type=Path, required=True)
+    parser.add_argument('--baseline-digest', required=True, help='baseline SHA-256 recorded before comparator runs')
     parser.add_argument('--comparator', type=Path, required=True)
+    parser.add_argument('--arm', required=True, help='frozen comparator configuration ID')
     args = parser.parse_args()
     try:
         paths = (args.labels, args.baseline, args.comparator)
@@ -86,10 +88,18 @@ def main():
         digests = [hashlib.sha256(item).hexdigest() for item in data]
         if digests[0] != args.label_digest:
             raise ValueError('label file does not match the sealed digest')
-        result = compare(*(json.loads(item) for item in data))
+        if digests[1] != args.baseline_digest:
+            raise ValueError('baseline file does not match the precommitted digest')
+        receipt = json.loads(data[2])
+        if not isinstance(receipt, dict) or (
+            receipt.get('arm'), receipt.get('label_sha256'), receipt.get('baseline_sha256')
+        ) != (args.arm, args.label_digest, args.baseline_digest):
+            raise ValueError('comparator receipt does not match the selected arm, sealed labels and locked baseline')
+        result = compare(json.loads(data[0]), json.loads(data[1]), receipt['rows'])
     except (OSError, ValueError, TypeError, KeyError) as error:
         parser.error(str(error))
-    print(json.dumps(result | {'input_sha256': dict(zip(('labels', 'baseline', 'comparator'), digests))}, indent=2))
+    print(json.dumps(result | {'arm': args.arm,
+                               'input_sha256': dict(zip(('labels', 'baseline', 'comparator'), digests))}, indent=2))
 
 
 if __name__ == '__main__':

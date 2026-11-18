@@ -73,3 +73,7 @@ The maintainer approved the draft design in conversation. One live Gemini develo
 **Decision:** Use unattended defaults only for reversible, already-authorized choices. Consent, provider admission, spend, merge and publication gates do not expire. Reconcile leases, committed work and external receipts before any restart; never restart a merely quiet or owner-held run.
 
 **Progress:** Added the OpenAI Decisions and sponsored Jev development adapters. Offline checks exercised request shape, confidence versus selected-option probability, negative clarity, usage and served-model mismatch. The existing 10 checks passed. No OpenAI or Jev inference was sent: verified no-additional-spend credentials are not configured.
+
+## 12 — Require the precommitted baseline
+
+The owner asked to resolve the merge finding. The scorer now requires a separately supplied baseline digest and rejects comparator receipts for another arm or seal. The GitHub evidence order still verifies precommitment: #3 seals labels, #4 records the baseline lock, then #6 records comparator receipts before labels are released. Scoring alone is not proof of run timing or provider origin.
