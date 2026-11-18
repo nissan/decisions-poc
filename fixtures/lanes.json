@@ -1,0 +1,15 @@
+{
+  "lanes": {
+    "swift": {"provider": "cedar", "model": "swift", "effort": "low", "tier": "cheap", "tools": ["read"], "reasoning_tokens": 200, "rates": [1, 3, 3]},
+    "craft": {"provider": "elm", "model": "craft", "effort": "medium", "tier": "mid", "tools": ["read", "edit", "shell"], "reasoning_tokens": 600, "rates": [2, 6, 6]},
+    "atlas-medium": {"provider": "cedar", "model": "atlas", "effort": "medium", "tier": "high", "tools": ["read", "edit", "shell", "diagram"], "reasoning_tokens": 1000, "rates": [3, 9, 9]},
+    "atlas-high": {"provider": "cedar", "model": "atlas", "effort": "high", "tier": "high", "tools": ["read", "edit", "shell", "diagram"], "reasoning_tokens": 2600, "rates": [3, 9, 9]},
+    "vista": {"provider": "pine", "model": "vista", "effort": "high", "tier": "frontier", "tools": ["read", "edit", "shell", "diagram"], "reasoning_tokens": 3600, "rates": [5, 15, 15]}
+  },
+  "aliases": {"bounded-reader": "swift", "standard-builder": "craft", "deep-analyst": "atlas-high"},
+  "default": {
+    "approved": ["bounded-reader", "standard-builder", "atlas-medium", "deep-analyst"],
+    "families": {"cedar": {"quota_tokens": 50000, "active": 2}, "elm": {"quota_tokens": 50000, "active": 1}, "pine": {"quota_tokens": 50000, "active": 0}},
+    "budget_micro_usd": 120000
+  }
+}

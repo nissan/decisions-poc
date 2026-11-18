@@ -33,3 +33,9 @@ Append one entry per research decision, prompt/rubric change, test run, publicat
 **Action and result:** Pushed research, design, and the demo/publication plan as separate commits. Read the public default branch back without authentication at kickoff commit `bdae12dd27a46b6afc2452a14db656e8b90db709`. Read [GDP-001](https://github.com/nissan/gemini-decisions-poc/issues/1) back from GitHub and validated its Workbench contract structure; that is not evidence or approval of its scenarios. Checked relative links, the six-scene manifest (80 seconds planned), and ignore rules for local notes, credentials, and raw media.
 
 **Next decision:** Review GDP-001's synthetic scenarios and pass rule; record a one-task free-tier smoke when access is available. No live model calls or media recording took place in this tranche.
+
+## 06 — Implement the read-only comparison
+
+**Prompt (paraphrased):** Carry the Workbench experiment through implementation, evidence, narrated demo, and publication.
+
+**Action:** Used a standalone worktree from the public default head. Versioned the synthetic provider catalog, typed question map, and 12 development / 24 held-out task packets. Both comparison arms share the hard eligibility filter; Gemini receives neither account information nor gold labels. Offline output explicitly distinguishes requests not sent from policy review. Draft fixtures and pass criteria still need maintainer review.
