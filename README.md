@@ -23,6 +23,7 @@ After maintainer review of the synthetic labels and pass rule, use `--split hold
 - [Experiment protocol](docs/experiment.md) — input, rubric, routing policy, and paired evaluation.
 - [Prompt and action log](docs/log.md) — public-safe decision trail.
 - [Retrospective and release plan](docs/writeup.md) — evidence and publication gates.
+- [Offline retrospective](docs/retrospective.md) — baseline misses and why zero Gemini calls make the comparison inconclusive.
 - [Demo brief](demo/brief.md) and [scene manifest](demo/manifest.json) — replaceable narrated scenes.
 
 [Issue #1](https://github.com/nissan/gemini-decisions-poc/issues/1) owns scope and readiness. Link working PRs and exact-head evidence there. Draft scenarios are not owner acceptance. The adviser runs in shadow mode: it cannot spawn agents, change settings or allocate real budget. Only original synthetic tasks and simulated lane snapshots go to Google or into this repository; no private project material, account data, transcripts, credentials, or raw recordings.

@@ -39,3 +39,9 @@ Append one entry per research decision, prompt/rubric change, test run, publicat
 **Prompt (paraphrased):** Carry the Workbench experiment through implementation, evidence, narrated demo, and publication.
 
 **Action:** Used a standalone worktree from the public default head. Versioned the synthetic provider catalog, typed question map, and 12 development / 24 held-out task packets. Both comparison arms share the hard eligibility filter; Gemini receives neither account information nor gold labels. Offline output explicitly distinguishes requests not sent from policy review. Draft fixtures and pass criteria still need maintainer review.
+
+## 07 — Run the offline gate and preserve the misses
+
+**Observed:** At `c607b42835`, 10 deterministic checks passed. The rules suggested 15 acceptable lanes and two incorrect lanes; seven cases correctly went to review. The CLI made zero Gemini requests. `python3 -m adviser --case D02 --live` stopped locally with exit 2 because `GEMINI_API_KEY` was unset. No live model, usage or cost evidence was produced.
+
+**Decision:** Do not tune out the baseline's two misses before the comparison. The [retrospective](retrospective.md) and [draft PR](https://github.com/nissan/gemini-decisions-poc/pull/2) record the negative cases and the live gate. Review collateral must say “offline,” not imply that the model was benchmarked.
