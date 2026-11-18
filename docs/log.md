@@ -81,3 +81,7 @@ The owner asked to resolve the merge finding. The scorer now requires a separate
 ## 13 — Add classic controls; hold on capacity
 
 Under the risk-based review policy, PR #2 stays builder-reviewed; it is not high risk. Added the five classic LLM configurations as schema-constrained, development-only smokes. 20 local checks passed, including label/type hiding, served-model mismatch, negative clarity, ineligible lanes and paid substitution. The fleet capacity probe reported Claude and OpenAI occupancy as unknown because another pipeline worker is active or unclassified. Under fleet rules, that holds both the independent labeler and live Claude/Codex smokes. No model was called.
+
+## 14 — Seal labels, smoke controls
+
+Owner confirmed capacity (option B) and supplied the OpenRouter key from 1Password. An isolated Claude Opus 5.5 labeler sealed the 24-case holdout (labels digest `9b6e704a…0f96`, recorded on #3). D02 smokes: Haiku/low and Sonnet/medium chose `craft`; the free OpenRouter model abstained to review with zero reported cost. Codex rejected GPT-6.2 Sol on this ChatGPT account, so before any holdout the Codex pair was re-registered as GPT-6 Luna low/medium.

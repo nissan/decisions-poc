@@ -16,8 +16,8 @@ from .policy import eligibility, fixture, nonnegative_int, recommendation, revie
 CONFIGS = {
     'claude-haiku-low': ('claude', 'haiku', 'low', 'claude-haiku'),
     'claude-sonnet-medium': ('claude', 'sonnet', 'medium', 'claude-sonnet'),
-    'codex-sol-low': ('codex', 'gpt-6.2-sol', 'low', None),
-    'codex-sol-medium': ('codex', 'gpt-6.2-sol', 'medium', None),
+    'codex-luna-low': ('codex', 'gpt-6-luna', 'low', None),
+    'codex-luna-medium': ('codex', 'gpt-6-luna', 'medium', None),
     'openrouter-lfm-free': ('openrouter', 'liquid/lfm-3-1.7b:free', None, 'liquid/lfm-3-1.7b'),
 }
 OPENROUTER = 'https://openrouter.ai/api/v1/chat/completions'
