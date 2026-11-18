@@ -30,7 +30,7 @@ Append one entry per research decision, prompt/rubric change, test run, publicat
 
 ## 05 — Establish the public work record
 
-**Action and result:** Pushed research, design, and the demo/publication plan as separate commits. Read the public default branch back without authentication at kickoff commit `bdae12dd27a46b6afc2452a14db656e8b90db709`. Read [GDP-001](https://github.com/nissan/gemini-decisions-poc/issues/1) back from GitHub and validated its Workbench contract structure; that is not evidence or approval of its scenarios. Checked relative links, the six-scene manifest (80 seconds planned), and ignore rules for local notes, credentials, and raw media.
+**Action and result:** Pushed research, design, and the demo/publication plan as separate commits. Read the public default branch back without authentication at kickoff commit `bdae12dd27a46b6afc2452a14db656e8b90db709`. Read [GDP-001](https://github.com/nissan/decisions-poc/issues/1) back from GitHub and validated its Workbench contract structure; that is not evidence or approval of its scenarios. Checked relative links, the six-scene manifest (80 seconds planned), and ignore rules for local notes, credentials, and raw media.
 
 **Next decision:** Review GDP-001's synthetic scenarios and pass rule; record a one-task free-tier smoke when access is available. No live model calls or media recording took place in this tranche.
 
@@ -44,4 +44,10 @@ Append one entry per research decision, prompt/rubric change, test run, publicat
 
 **Observed:** At `c607b42835`, 10 deterministic checks passed. The rules suggested 15 acceptable lanes and two incorrect lanes; seven cases correctly went to review. The CLI made zero Gemini requests. `python3 -m adviser --case D02 --live` stopped locally with exit 2 because `GEMINI_API_KEY` was unset. No live model, usage or cost evidence was produced.
 
-**Decision:** Do not tune out the baseline's two misses before the comparison. The [retrospective](retrospective.md) and [draft PR](https://github.com/nissan/gemini-decisions-poc/pull/2) record the negative cases and the live gate. Review collateral must say “offline,” not imply that the model was benchmarked.
+**Decision:** Do not tune out the baseline's two misses before the comparison. The [retrospective](retrospective.md) and [draft PR](https://github.com/nissan/decisions-poc/pull/2) record the negative cases and the live gate. Review collateral must say “offline,” not imply that the model was benchmarked.
+
+## 08 — Expand to three decision models
+
+**Prompt (paraphrased):** Find a no-additional-spend path for an OpenAI, Gemini and Jev comparison, and rename the project so it is no longer Gemini-specific.
+
+**Action:** Renamed the public repository to `decisions-poc`. [Provider research](providers.md) distinguishes a native free tier, subscription-funded API credits, and a limited sponsored model version. The offline baseline stays frozen; compare the same synthetic packets and typed judgments through all three arms before making a head-to-head claim.
