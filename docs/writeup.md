@@ -1,11 +1,11 @@
 # Retrospective and publication plan
 
-**Audience:** engineers deciding whether closed-set scoring belongs in a task-to-model router. **Question:** did the classifier find better task-to-model assignments than explicit rules once we accounted for abstentions, bad suggestions and projected cost?
+**Audience:** engineers deciding whether closed-set scoring belongs in a task-to-model router. **Question:** how do typed decision models and ordinary LLMs compare to the current Workbench planning workflow once we account for abstentions, bad suggestions and projected cost?
 
 ## Evidence to retain as we build
 
 - **Decisions:** public-safe request summaries, rejected alternatives and why, exact versioned model question/rubric changes, threshold changes and their development-split evidence.
-- **Results:** case IDs, fixture and question revisions, exact code commit, arm, redacted service errors, typed decisions, usage and latency. Keep observed classifier usage separate from projected agent cost and held-out results separate from tuning runs. Preserve failed runs; do not overwrite them with reruns.
+- **Results:** case IDs, fixture and question revisions, exact code commit, arm, redacted service errors, decisions, usage and latency. Record the current planner's first proposal and whether human review changed it. Keep observed router usage separate from projected agent cost, and held-out results separate from tuning and the earlier static rule diagnostic. Preserve failed runs; do not overwrite them with reruns.
 - **Retrospective:** starting hypothesis, what changed, developer mistakes (and their corrections), paired results and misses, threat to validity, and what we would keep or change. End with one reusable practice for the proposed Shared Brain review flow if the evidence supports it.
 - **Claim ledger:** for each publishable claim, record its exact wording, source or run receipt, denominator, limitations and allowed channels. Vendor figures stay attributed. The public repo should contain original fixtures and only approved derivatives of local run receipts.
 
@@ -13,7 +13,7 @@
 
 | Channel | Angle | Include |
 | --- | --- | --- |
-| Technical blog | Is typed model routing better than explicit rules? | Question map, policy filter, paired counts, forecast assumptions, one example that helped and one that didn't, reproducibility steps. |
+| Technical blog | Can a decisions API improve on how we already choose models? | Current-practice baseline, classic controls, question map, policy filter, paired counts, forecast assumptions, one helpful example and one miss, reproduction steps. |
 | LinkedIn | What the model could judge versus what the application had to decide | One supported finding, one limitation, link to the article and narrated demo. |
 | X / Twitter | One concrete before/after | Short thread or single post linking the repo and article; add an approved clip or still only if it helps. |
 | Other technical channels | Reproducible experiment, not product promotion | Adapt for a project newsletter or an appropriate developer community; respect each community's rules. Link to the canonical article rather than duplicating claims. |

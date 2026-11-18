@@ -3,6 +3,7 @@
 .venv/
 __pycache__/
 /private/
+/publication/
 /runs/
 /demo/sources/
 /demo/captions/
