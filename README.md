@@ -20,6 +20,8 @@ python3 -m adviser --case D02 --live --json runs/smoke-D02.json
 The existing CLI can evaluate a Gemini-only holdout after maintainer review, but that is not the planned comparison. Freeze and capture the [current-practice baseline](docs/experiment.md#primary-baseline-current-workbench-planning-workflow) before running any comparator on holdout. Each CLI receipt contains source/fixture hashes and per-case decisions; do not recycle output filenames. The CLI cannot read an account's billing tier.
 
 - [API research](docs/research.md) — vendor contract, limits, and what we still need to measure.
+- [Architecture](docs/architecture.md) — where task-type analysis and model selection sit, and why it's worth automating.
+- [Part 1 results](docs/results.md) — sealed 24-case holdout against the current Workbench planner.
 - [Comparison matrix](docs/providers.md) — three typed APIs, tiered Claude and Codex controls, and a pinned OpenRouter free candidate.
 - [Experiment protocol](docs/experiment.md) — input, rubric, routing policy, and paired evaluation.
 - [Prompt and action log](docs/log.md) — public-safe decision trail.
