@@ -31,4 +31,4 @@ Classic controls return a lane ID or `review`, a task-clear boolean, and an orde
 - Compare each arm to current practice on paired cases. Show the static rule reference and arm-to-arm results separately. Record exact model, effort, provider/endpoint and harness, code and fixture hashes, accuracy, review/error counts, usage and latency. Separate gateway or CLI overhead and classifier consumption from projected executor cost.
 - Review labels and thresholds before live holdout. Verify one development smoke per configuration and do not silently fall back. Label any partial comparison as partial; do not rank unrun arms.
 
-Current implementation: diagnostic rules and the Gemini adapter. The primary baseline capture, OpenAI/Jev adapters and classic controls have not been implemented or live-verified.
+Current implementation: diagnostic rules, a live-smoked Gemini adapter, and offline-verified OpenAI/Jev development adapters. Current-practice capture, sealed multi-arm holdout execution and classic controls are not yet qualified.

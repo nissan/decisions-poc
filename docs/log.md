@@ -63,3 +63,13 @@ Append one entry per research decision, prompt/rubric change, test run, publicat
 ## 10 — Begin the approved evaluation
 
 The maintainer approved the draft design in conversation. One live Gemini development request (D02) returned all three typed answers with 513 input tokens and zero output tokens in 2.216 s on this workstation. The top lane was `craft` (0.656); clarity was 0.871, but the 0.80 lane threshold sent it to review. This is a successful API smoke, not a holdout verdict. The raw receipt stays local. No sealed holdout, current-practice baseline or other model arm ran.
+
+## 11 — Continue autonomously within recorded gates
+
+**Request (paraphrased):** Keep moving without routine approvals; check for stalled work every 15 minutes and default to the recommendation after three unanswered checks.
+
+**Observed:** This host has no cron executable or active cron service. The installed Workbench recovery job is hourly and has its own enrolled streams; this POC is not one of them. No scheduler was changed and no autonomous check-in is active for this POC.
+
+**Decision:** Use unattended defaults only for reversible, already-authorized choices. Consent, provider admission, spend, merge and publication gates do not expire. Reconcile leases, committed work and external receipts before any restart; never restart a merely quiet or owner-held run.
+
+**Progress:** Added the OpenAI Decisions and sponsored Jev development adapters. Offline checks exercised request shape, confidence versus selected-option probability, negative clarity, usage and served-model mismatch. The existing 10 checks passed. No OpenAI or Jev inference was sent: verified no-additional-spend credentials are not configured.
