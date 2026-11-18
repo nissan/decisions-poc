@@ -77,3 +77,7 @@ The maintainer approved the draft design in conversation. One live Gemini develo
 ## 12 — Require the precommitted baseline
 
 The owner asked to resolve the merge finding. The scorer now requires a separately supplied baseline digest and rejects comparator receipts for another arm or seal. The GitHub evidence order still verifies precommitment: #3 seals labels, #4 records the baseline lock, then #6 records comparator receipts before labels are released. Scoring alone is not proof of run timing or provider origin.
+
+## 13 — Add classic controls; hold on capacity
+
+Under the risk-based review policy, PR #2 stays builder-reviewed; it is not high risk. Added the five classic LLM configurations as schema-constrained, development-only smokes. 20 local checks passed, including label/type hiding, served-model mismatch, negative clarity, ineligible lanes and paid substitution. The fleet capacity probe reported Claude and OpenAI occupancy as unknown because another pipeline worker is active or unclassified. Under fleet rules, that holds both the independent labeler and live Claude/Codex smokes. No model was called.
