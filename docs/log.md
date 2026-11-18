@@ -51,3 +51,11 @@ Append one entry per research decision, prompt/rubric change, test run, publicat
 **Prompt (paraphrased):** Find a no-additional-spend path for an OpenAI, Gemini and Jev comparison, and rename the project so it is no longer Gemini-specific.
 
 **Action:** Renamed the public repository to `decisions-poc`. [Provider research](providers.md) distinguishes a native free tier, subscription-funded API credits, and a limited sponsored model version. The offline baseline stays frozen; compare the same synthetic packets and typed judgments through all three arms before making a head-to-head claim.
+
+## 09 — Compare to the practice we actually want to improve
+
+**Prompt (paraphrased):** Use ordinary Claude and Codex subscription models at more than one tier, plus an OpenRouter free model; make current task analysis and selection the baseline.
+
+**Action:** Checked the approved role and effort policy, the local CLI output contracts, and the free structured-output catalog. [Revised the experiment](experiment.md) to capture the current Workbench planner's first decisions before running other arms on holdout. Demoted the offline rules result to a diagnostic control. Treat a subscription allowance as finite, and pin what was actually served. No inference ran in this tranche.
+
+**Holdout correction:** The original draft holdout shipped with gold labels in the public fixture. Keep it for diagnostics; construct a fresh blind holdout with separate labels committed by digest before the first measured run.

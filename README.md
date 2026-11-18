@@ -2,7 +2,7 @@
 
 **Subagent Routing Adviser:** can a typed decisions API select the provider, model and reasoning level for a planned task without accepting worse matches or overprovisioning the work?
 
-This repository contains a runnable shadow adviser and a synthetic paired evaluation. The offline mode runs the rule baseline and eligibility checks without credentials. It does not fabricate Gemini answers. See [checks](docs/CHECKS.md) for the evidence required before claiming live results.
+This repository contains a runnable shadow adviser. Offline mode runs the static rules diagnostic and eligibility checks; it does not reproduce the current Workbench planning workflow or fabricate Gemini answers. See [checks](docs/CHECKS.md) for the evidence required before claiming live results.
 
 ```sh
 python3 -m adviser --case D02
@@ -17,10 +17,10 @@ mkdir -p runs
 python3 -m adviser --case D02 --live --json runs/smoke-D02.json
 ```
 
-After maintainer review of the synthetic labels and pass rule, use `--split holdout --live --reviewed-holdout --json runs/holdout.json`. Each receipt contains source/fixture hashes and per-case decisions; do not recycle output filenames. A service failure stops further requests and makes the comparison inconclusive. The flags acknowledge review and free-tier access; the CLI cannot read an account's billing tier.
+The existing CLI can evaluate a Gemini-only holdout after maintainer review, but that is not the planned comparison. Freeze and capture the [current-practice baseline](docs/experiment.md#primary-baseline-current-workbench-planning-workflow) before running any comparator on holdout. Each CLI receipt contains source/fixture hashes and per-case decisions; do not recycle output filenames. The CLI cannot read an account's billing tier.
 
 - [API research](docs/research.md) — vendor contract, limits, and what we still need to measure.
-- [Provider comparison](docs/providers.md) — Gemini Decision 1, OpenAI GPT-6 Luna Decisions, and TypeSafe Jev: access and fair-comparison rules.
+- [Comparison matrix](docs/providers.md) — three typed APIs, tiered Claude and Codex controls, and a pinned OpenRouter free candidate.
 - [Experiment protocol](docs/experiment.md) — input, rubric, routing policy, and paired evaluation.
 - [Prompt and action log](docs/log.md) — public-safe decision trail.
 - [Retrospective and release plan](docs/writeup.md) — evidence and publication gates.
