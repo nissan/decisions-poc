@@ -59,3 +59,7 @@ Append one entry per research decision, prompt/rubric change, test run, publicat
 **Action:** Checked the approved role and effort policy, the local CLI output contracts, and the free structured-output catalog. [Revised the experiment](experiment.md) to capture the current Workbench planner's first decisions before running other arms on holdout. Demoted the offline rules result to a diagnostic control. Treat a subscription allowance as finite, and pin what was actually served. No inference ran in this tranche.
 
 **Holdout correction:** The original draft holdout shipped with gold labels in the public fixture. Keep it for diagnostics; construct a fresh blind holdout with separate labels committed by digest before the first measured run.
+
+## 10 — Begin the approved evaluation
+
+The maintainer approved the draft design in conversation. One live Gemini development request (D02) returned all three typed answers with 513 input tokens and zero output tokens in 2.216 s on this workstation. The top lane was `craft` (0.656); clarity was 0.871, but the 0.80 lane threshold sent it to review. This is a successful API smoke, not a holdout verdict. The raw receipt stays local. No sealed holdout, current-practice baseline or other model arm ran.
