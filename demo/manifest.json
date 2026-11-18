@@ -1,0 +1,91 @@
+{
+  "status": "preproduction",
+  "aspectRatio": "16:9",
+  "maxDurationSeconds": 90,
+  "scenes": [
+    {
+      "id": "S01-intake",
+      "purpose": "Show one planning task and the choice of provider, model and reasoning level.",
+      "script": "Open a synthetic task packet. Voice: ‘Which eligible model and reasoning level can do this work without overprovisioning it?’",
+      "targetDurationSeconds": 10,
+      "mediaType": "source",
+      "source": "Actual fixture and CLI",
+      "takes": [],
+      "selectedTake": null,
+      "audioPolicy": "Disclosed local synthetic narration",
+      "captions": "English sidecars from selected narration",
+      "transition": "hard-cut",
+      "pip": null
+    },
+    {
+      "id": "S02-contract",
+      "purpose": "Explain the three answer types and why there is no generated explanation.",
+      "script": "Show the question map. Voice: ‘We ask for lane fit, task clarity and complexity. Gemini returns probabilities and scores; code decides whether a recommendation is allowed.’",
+      "targetDurationSeconds": 13,
+      "mediaType": "graphic",
+      "source": "Labelled card derived from the committed question map",
+      "takes": [],
+      "selectedTake": null,
+      "audioPolicy": "Disclosed local synthetic narration",
+      "captions": "English sidecars from selected narration",
+      "transition": "hard-cut",
+      "pip": null
+    },
+    {
+      "id": "S03-paired",
+      "purpose": "Compare the two routing methods on the same task and lane snapshot.",
+      "script": "Run the rule baseline and Gemini adviser on the same packet. Narrate the observed recommendations or abstentions and distinguish any projected budget effect from actual usage.",
+      "targetDurationSeconds": 18,
+      "mediaType": "source",
+      "source": "Actual CLI output from the selected paired run",
+      "takes": [],
+      "selectedTake": null,
+      "audioPolicy": "Disclosed local synthetic narration",
+      "captions": "English sidecars from selected narration",
+      "transition": "hard-cut",
+      "pip": null
+    },
+    {
+      "id": "S04-review",
+      "purpose": "Show where the CLI refuses to suggest a route.",
+      "script": "Show a blocked or reviewed task. Voice: ‘No score authorizes a provider or charges a budget. This tool can recommend a lane, or ask for review. It cannot launch an agent.’",
+      "targetDurationSeconds": 12,
+      "mediaType": "source",
+      "source": "Actual CLI output with no private identifiers",
+      "takes": [],
+      "selectedTake": null,
+      "audioPolicy": "Disclosed local synthetic narration",
+      "captions": "English sidecars from selected narration",
+      "transition": "hard-cut",
+      "pip": null
+    },
+    {
+      "id": "S05-results",
+      "purpose": "Show measured counts and the principal limitation.",
+      "script": "Read paired gains, losses and coverage. Label downstream cost as a projection and show actual classifier usage and round-trip times separately.",
+      "targetDurationSeconds": 17,
+      "mediaType": "graphic",
+      "source": "Labelled results card generated from the published evidence revision",
+      "takes": [],
+      "selectedTake": null,
+      "audioPolicy": "Disclosed local synthetic narration",
+      "captions": "English sidecars from selected narration",
+      "transition": "hard-cut",
+      "pip": null
+    },
+    {
+      "id": "S06-reproduce",
+      "purpose": "Give the viewer a reproducible next action.",
+      "script": "Show the exact public revision and experiment commands. Voice: ‘The task fixtures, rule baseline and decision questions are in the repo. Run the comparison with your own synthetic tasks.’",
+      "targetDurationSeconds": 10,
+      "mediaType": "graphic",
+      "source": "Labelled evidence and reproduction card",
+      "takes": [],
+      "selectedTake": null,
+      "audioPolicy": "Disclosed local synthetic narration",
+      "captions": "English sidecars from selected narration",
+      "transition": "end",
+      "pip": null
+    }
+  ]
+}
