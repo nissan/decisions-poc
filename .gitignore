@@ -1,0 +1,11 @@
+.env
+.env.*
+.venv/
+__pycache__/
+/private/
+/runs/
+/demo/sources/
+/demo/captions/
+/demo/renders/
+/demo/validation/
+/demo/receipts/
