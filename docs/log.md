@@ -27,3 +27,9 @@ Append one entry per research decision, prompt/rubric change, test run, publicat
 **Prompt (paraphrased):** Can Gemini Decisions assist Workbench's planning step that chooses a provider, model and reasoning level for each delegated task while making better use of available tokens and budget?
 
 **Action and result:** Checked how the existing selector applies role defaults and how the fleet separates fit from authorization and admission. Chose a shadow adviser because structured planning packets and bounded lane choices fit the API directly. Replaced the game scenario with a paired rule-baseline comparison. Keep provider policy, capacity and cost checks in code. Measure model suggestions and simulated token economics separately; do not claim agent execution quality or real savings. [Revised protocol](experiment.md).
+
+## 05 — Establish the public work record
+
+**Action and result:** Pushed research, design, and the demo/publication plan as separate commits. Read the public default branch back without authentication at kickoff commit `bdae12dd27a46b6afc2452a14db656e8b90db709`. Read [GDP-001](https://github.com/nissan/gemini-decisions-poc/issues/1) back from GitHub and validated its Workbench contract structure; that is not evidence or approval of its scenarios. Checked relative links, the six-scene manifest (80 seconds planned), and ignore rules for local notes, credentials, and raw media.
+
+**Next decision:** Review GDP-001's synthetic scenarios and pass rule; record a one-task free-tier smoke when access is available. No live model calls or media recording took place in this tranche.
