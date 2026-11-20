@@ -31,9 +31,25 @@ Per-API thresholds were chosen on 36 calibration cases (12 dev + the 24 opened v
 
 Calibration closed most of the gap for Gemini and Jev. Calibrated Jev matched the planner's 20/24 with **no wrong lanes** where the planner made two; it traded those for two extra reviews. OpenAI's calibration set allowed no looser threshold without a wrong lane, so it stayed cautious. No arm met the pass rule (each had at least one regression). With a different-family labeler the planner scored 20/24, not 23/24, which supports the Part 1 caveat that a same-family labeler flattered the baseline.
 
+### Ordinary-LLM controls on v2 (#13)
+
+The same sealed v2 packets, labels and locked planner baseline were used. Outputs were locked on #13 before scoring.
+
+| Arm | Correct / 24 | Wrong lane | Avoidable review | Gains | Regressions | Verdict |
+|---|---|---|---|---|---|---|
+| Current Workbench planner (baseline) | 20 | 2 | 2 | — | — | — |
+| Claude Sonnet, medium | **23** | 1 | 0 | 2 | **0** | **pass** |
+| GPT-6 Luna, low | 21 | 3 | 0 | 1 | 0 | no-go (more wrong lanes) |
+| GPT-6 Luna, medium | 20 | 1 | 3 | 1 | 1 | no-go |
+| Claude Haiku, low | 16 | 1 | 7 | 0 | 4 | no-go |
+| LFM-3 1.7B free (OpenRouter) | — | — | — | — | — | inconclusive (HTTP error on first routable case; run stopped) |
+
+Claude Sonnet at medium reasoning was the only arm to meet the pass rule. It had no regressions, two gains and one wrong lane where the planner had two. The matched executor-cost forecast was identical to the planner's on the 11 cases where both were acceptable. Luna is the labeler's model family, so its v2 scores may be flattered. That is the same effect that favoured the planner on v1.
+
 ## Validity limits
 
 - The labeler and baseline planner were separate sessions of the same model family (Claude Opus 5.5); agreement between them likely favors the baseline. The usual GPT planner role was unavailable on ChatGPT Go.
 - Labels are agent-generated and not yet maintainer-reviewed. 24 synthetic cases; single run per arm; no downstream execution, so no realized savings claim.
-- Codex Luna low and medium gave identical decisions; Codex does not report the served model.
+- On v1, Codex Luna low and medium gave identical decisions (they differed on v2); Codex does not report the served model.
 - Part 3: calibration reused the opened v1 cases, so thresholds fit those cases closely; only v2 is a fair test. 24 v2 cases, one run each; agent-generated labels; differences of one case are within noise.
+- #13: Sonnet's pass is one run on 24 cases; one case either way would change the verdict. The planner and Sonnet are both Claude models, and the labeler is GPT-6 Luna.

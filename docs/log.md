@@ -93,3 +93,7 @@ Owner upgraded ChatGPT to Pro, approved spending the existing OpenAI API balance
 ## 16 — Part 3: calibrated thresholds
 
 Ticket #11. Calibrated per-API thresholds on 36 cases, froze them, then sealed a fresh 24-case holdout labelled by a different model family and locked the planner baseline first. Calibrated Jev and Gemini both matched the planner's 20/24; Jev did it with zero wrong lanes. OpenAI stayed at 13/24. Cost: a few thousand tokens per API.
+
+## 17 — Controls on v2 and PoC conclusion
+
+Ticket #13. Ordinary-LLM controls were rerun on the independently labelled v2 holdout. Claude Sonnet medium passed: 23/24, no regressions, and one wrong lane versus the planner's two. No typed decisions API passed. Conclusion on #1: do not adopt a decisions API for routing. Sonnet-medium as router is the only candidate, and it needs a repeat run before any Workbench change.
