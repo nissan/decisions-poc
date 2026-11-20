@@ -85,3 +85,7 @@ Under the risk-based review policy, PR #2 stays builder-reviewed; it is not high
 ## 14 — Seal labels, smoke controls
 
 Owner confirmed capacity (option B) and supplied the OpenRouter key from 1Password. An isolated Claude Opus 5.5 labeler sealed the 24-case holdout (labels digest `9b6e704a…0f96`, recorded on #3). D02 smokes: Haiku/low and Sonnet/medium chose `craft`; the free OpenRouter model abstained to review with zero reported cost. Codex rejected GPT-6.2 Sol on this ChatGPT account, so before any holdout the Codex pair was re-registered as GPT-6 Luna low/medium.
+
+## 15 — Part 2: OpenAI Decisions and Jev
+
+Owner upgraded ChatGPT to Pro, approved spending the existing OpenAI API balance, and funded a native TypeSafe account. Ticket #9 carried the outcome contract. D02 smokes passed for `gpt-6-luna` and `jev-1.14.0`. Holdout outputs were locked before scoring. OpenAI 13/24 correct, Jev 11/24, both with zero wrong lanes and many avoidable reviews. The next useful test is threshold calibration on development data, not more providers.

@@ -12,7 +12,7 @@ from . import classic, typed_smoke
 from .decisions import MAX_RESPONSE, NoRedirect, advise
 from .policy import eligibility, fixture, review
 
-TYPED = {'openai-decisions': 'openai', 'jev-1.13-free': 'jev'}
+TYPED = {'openai-decisions': 'openai', 'jev-1.13-free': 'jev', 'jev-1.14': 'typesafe'}
 ARMS = ['gemini-decision-1', *TYPED, *classic.CONFIGS]
 
 
