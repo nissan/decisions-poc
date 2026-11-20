@@ -14,6 +14,7 @@ from .policy import eligibility, fixture, nonnegative_int, recommendation, revie
 PROVIDERS = {
     'openai': ('https://api.openai.com/v1/decisions', 'gpt-6-luna', 'OPENAI_API_KEY'),
     'jev': ('https://opencode.ai/inference/systemone/v1/systemone', 'jev-1.13-free', 'OPENCODE_API_KEY'),
+    'typesafe': ('https://api.typesafe.ai/v1/systemone', 'jev-1.14.0', 'TYPESAFE_API_KEY'),
 }
 
 
@@ -25,7 +26,7 @@ def encode(provider, case, eligible, template):
     shared = json.dumps(task, ensure_ascii=False)
     model = PROVIDERS[provider][1]
     questions = body['questions']
-    if provider == 'jev':
+    if provider in ('jev', 'typesafe'):
         return {'model': model, 'state': shared, 'questions': questions}
     fit, clear, complexity = (questions[k] for k in ('lane_fit', 'task_clear', 'complexity'))
     clarity = clear['criteria']
@@ -52,7 +53,7 @@ def _pairs(rows, key):
 def decode(provider, reply, eligible):
     is_openai = provider == 'openai'
     model = reply['model']
-    if not isinstance(model, str) or not model.startswith('gpt-6-luna' if is_openai else 'jev-1.13'):
+    if not isinstance(model, str) or not model.startswith({'openai': 'gpt-6-luna', 'jev': 'jev-1.13', 'typesafe': 'jev-1.14'}[provider]):
         raise ValueError('unexpected served model')
     answers = _pairs(reply['answers'], 'name') if is_openai else reply['answers']
     if answers.keys() != {'lane_fit', 'task_clear', 'complexity'}:

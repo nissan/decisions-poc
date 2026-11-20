@@ -8,11 +8,24 @@ import tempfile
 from time import perf_counter
 from urllib.request import Request, build_opener
 
-from . import classic
+from . import classic, typed_smoke
 from .decisions import MAX_RESPONSE, NoRedirect, advise
 from .policy import eligibility, fixture, review
 
-ARMS = ['gemini-decision-1', *classic.CONFIGS]
+TYPED = {'openai-decisions': 'openai', 'jev-1.13-free': 'jev', 'jev-1.14': 'typesafe'}
+ARMS = ['gemini-decision-1', *TYPED, *classic.CONFIGS]
+
+
+def typed_case(arm, case, eligible, template, key):
+    provider = TYPED[arm]
+    url = typed_smoke.PROVIDERS[provider][0]
+    body = json.dumps(typed_smoke.encode(provider, case, eligible, template)).encode()
+    request = Request(url, body, {'Authorization': f'Bearer {key}', 'Content-Type': 'application/json'}, method='POST')
+    with build_opener(NoRedirect()).open(request, timeout=30) as response:
+        wire = response.read(MAX_RESPONSE + 1)
+    if len(wire) > MAX_RESPONSE:
+        raise ValueError('oversized reply')
+    return typed_smoke.decode(provider, json.loads(wire), eligible)
 
 
 def classic_case(config, case, eligible, template, key, workdir):
@@ -52,7 +65,9 @@ def main():
     args = parser.parse_args()
     packets = json.loads(args.packets.read_bytes())
     catalog, template = fixture('lanes'), fixture('questions')
-    key = os.environ.get('GEMINI_API_KEY' if args.arm == 'gemini-decision-1' else 'OPENROUTER_API_KEY', '').strip()
+    env = ('GEMINI_API_KEY' if args.arm == 'gemini-decision-1' else
+           typed_smoke.PROVIDERS[TYPED[args.arm]][2] if args.arm in TYPED else 'OPENROUTER_API_KEY')
+    key = os.environ.get(env, '').strip()
     rows, stopped = [], False
     with args.json.open('x') as output, tempfile.TemporaryDirectory() as workdir:
         for case in packets:
@@ -66,7 +81,8 @@ def main():
                 row = advise(case, eligible, template, key)
             else:
                 try:
-                    row = classic_case(args.arm, case, eligible, template, key, workdir)
+                    row = (typed_case(args.arm, case, eligible, template, key) if args.arm in TYPED
+                           else classic_case(args.arm, case, eligible, template, key, workdir))
                 except Exception as error:
                     row = {'status': 'provider-error', 'reason': type(error).__name__}
             stopped = stopped or row['status'] == 'provider-error'
