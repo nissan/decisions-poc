@@ -38,13 +38,17 @@ The same sealed v2 packets, labels and locked planner baseline were used. Output
 | Arm | Correct / 24 | Wrong lane | Avoidable review | Gains | Regressions | Verdict |
 |---|---|---|---|---|---|---|
 | Current Workbench planner (baseline) | 20 | 2 | 2 | — | — | — |
+| Claude Opus 5.5, medium, plain schema router (#15) | **24** | 0 | 0 | 2 | **0** | **pass** |
 | Claude Sonnet, medium | **23** | 1 | 0 | 2 | **0** | **pass** |
+| GPT-6.2 Sol, medium (#15) | 23 | 0 | 1 | 2 | 1 | no-go (one regression) |
 | GPT-6 Luna, low | 21 | 3 | 0 | 1 | 0 | no-go (more wrong lanes) |
 | GPT-6 Luna, medium | 20 | 1 | 3 | 1 | 1 | no-go |
 | Claude Haiku, low | 16 | 1 | 7 | 0 | 4 | no-go |
+| GPT-6.1 Terra, medium (#15) | 18 | 0 | 6 | 1 | 3 | no-go |
+| Nemotron 3.5 Super free, OpenRouter floor (#15) | 19 | 2 | 3 | 2 | 3 | no-go |
 | LFM-3 1.7B free (OpenRouter) | — | — | — | — | — | inconclusive (HTTP error on first routable case; run stopped) |
 
-Claude Sonnet at medium reasoning was the only arm to meet the pass rule. It had no regressions, two gains and one wrong lane where the planner had two. The matched executor-cost forecast was identical to the planner's on the 11 cases where both were acceptable. Luna is the labeler's model family, so its v2 scores may be flattered. That is the same effect that favoured the planner on v1.
+Two arms met the pass rule. Claude Opus 5.5 as a plain schema router scored 24/24 with no wrong lanes. Claude Sonnet at medium reasoning scored 23/24 with one wrong lane. Both had no regressions. The same Opus model in the Workbench planner role scored 20. This is an inference, not a tested cause: the free-text planner framing, rather than the model, may account for those misses. Sol scored 23 with no wrong lanes but one regression. A free Nemotron floor reached 19/24, with two wrong lanes. Matched executor-cost forecasts equalled the planner's wherever both were acceptable. Luna, Sol and Terra share the labeler's GPT-6 family, so their scores may be flattered.
 
 ## Validity limits
 

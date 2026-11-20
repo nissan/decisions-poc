@@ -97,3 +97,7 @@ Ticket #11. Calibrated per-API thresholds on 36 cases, froze them, then sealed a
 ## 17 — Controls on v2 and PoC conclusion
 
 Ticket #13. Ordinary-LLM controls were rerun on the independently labelled v2 holdout. Claude Sonnet medium passed: 23/24, no regressions, and one wrong lane versus the planner's two. No typed decisions API passed. Conclusion on #1: do not adopt a decisions API for routing. Sonnet-medium as router is the only candidate, and it needs a repeat run before any Workbench change.
+
+## 18 — Frontier controls and free floor on v2
+
+Ticket #15. Opus 5.5 as a plain schema router passed with 24/24. GPT-6.2 Sol scored 23/24 with one regression. GPT-6.1 Terra scored 18/24, and the free Nemotron floor 19/24. Cohere was skipped because OpenRouter offers it only as a paid route. The revised conclusion on #1: do not adopt a decisions API. A schema-constrained Claude router (Opus or Sonnet, medium) outperformed the current planner role and is worth a repeated test before any Workbench change.

@@ -16,9 +16,13 @@ from .policy import eligibility, fixture, nonnegative_int, recommendation, revie
 CONFIGS = {
     'claude-haiku-low': ('claude', 'haiku', 'low', 'claude-haiku'),
     'claude-sonnet-medium': ('claude', 'sonnet', 'medium', 'claude-sonnet'),
+    'claude-opus-medium': ('claude', 'opus', 'medium', 'claude-opus'),
     'codex-luna-low': ('codex', 'gpt-6-luna', 'low', None),
     'codex-luna-medium': ('codex', 'gpt-6-luna', 'medium', None),
+    'codex-sol-medium': ('codex', 'gpt-6.2-sol', 'medium', None),
+    'codex-terra-medium': ('codex', 'gpt-6.1-terra', 'medium', None),
     'openrouter-lfm-free': ('openrouter', 'liquid/lfm-3-1.7b:free', None, 'liquid/lfm-3-1.7b'),
+    'openrouter-nemotron-free': ('openrouter', 'nvidia/nemotron-3.5-super-vl:free', None, 'nvidia/nemotron-3.5-super-vl'),
 }
 OPENROUTER = 'https://openrouter.ai/api/v1/chat/completions'
 
