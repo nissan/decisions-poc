@@ -8,9 +8,9 @@ import tempfile
 from time import perf_counter
 from urllib.request import Request, build_opener
 
-from . import classic, typed_smoke
+from . import calibrate, classic, typed_smoke
 from .decisions import MAX_RESPONSE, NoRedirect, advise
-from .policy import eligibility, fixture, review
+from .policy import eligibility, fixture, recommendation, review
 
 TYPED = {'openai-decisions': 'openai', 'jev-1.13-free': 'jev', 'jev-1.14': 'typesafe'}
 ARMS = ['gemini-decision-1', *TYPED, *classic.CONFIGS]
@@ -62,6 +62,8 @@ def main():
     parser.add_argument('--label-digest', required=True)
     parser.add_argument('--baseline-digest', required=True)
     parser.add_argument('--json', type=Path, required=True)
+    parser.add_argument('--thresholds', type=lambda s: tuple(map(float, s.split(','))), metavar='FIT,CLEAR',
+                        help='frozen calibrated thresholds for typed arms (default: shared 0.80,0.75)')
     args = parser.parse_args()
     packets = json.loads(args.packets.read_bytes())
     catalog, template = fixture('lanes'), fixture('questions')
@@ -85,9 +87,15 @@ def main():
                            else classic_case(args.arm, case, eligible, template, key, workdir))
                 except Exception as error:
                     row = {'status': 'provider-error', 'reason': type(error).__name__}
+            if args.thresholds and row['status'] in ('suggest', 'review') and row.get('answers'):
+                lane = calibrate.decide(calibrate.signals(row), *args.thresholds)
+                kept = {k: row[k] for k in ('answers', 'usage', 'served_model', 'request_attempted') if k in row}
+                row = (recommendation(eligible[lane], 'calibrated threshold') if lane != 'review'
+                       else review('calibrated threshold')) | kept
             stopped = stopped or row['status'] == 'provider-error'
             rows.append(row | {'case': case['case'], 'elapsed_ms': round((perf_counter() - start) * 1000, 3)})
         json.dump({'arm': args.arm, 'label_sha256': args.label_digest, 'baseline_sha256': args.baseline_digest,
+                   'thresholds': args.thresholds,
                    'packets_sha256': hashlib.sha256(args.packets.read_bytes()).hexdigest(), 'rows': rows}, output, indent=1)
     print(args.arm, {s: sum(r['status'] == s for r in rows) for s in ('suggest', 'review', 'provider-error', 'not-run')})
 
