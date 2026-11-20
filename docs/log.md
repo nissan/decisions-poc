@@ -89,3 +89,7 @@ Owner confirmed capacity (option B) and supplied the OpenRouter key from 1Passwo
 ## 15 — Part 2: OpenAI Decisions and Jev
 
 Owner upgraded ChatGPT to Pro, approved spending the existing OpenAI API balance, and funded a native TypeSafe account. Ticket #9 carried the outcome contract. D02 smokes passed for `gpt-6-luna` and `jev-1.14.0`. Holdout outputs were locked before scoring. OpenAI 13/24 correct, Jev 11/24, both with zero wrong lanes and many avoidable reviews. The next useful test is threshold calibration on development data, not more providers.
+
+## 16 — Part 3: calibrated thresholds
+
+Ticket #11. Calibrated per-API thresholds on 36 cases, froze them, then sealed a fresh 24-case holdout labelled by a different model family and locked the planner baseline first. Calibrated Jev and Gemini both matched the planner's 20/24; Jev did it with zero wrong lanes. OpenAI stayed at 13/24. Cost: a few thousand tokens per API.
